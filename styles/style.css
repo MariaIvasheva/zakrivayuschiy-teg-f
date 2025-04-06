@@ -11,11 +11,11 @@
 */
 
 .page {
-  font-family: var(--font-family);
-  font-weight: var(--card-body-weight);
+  font-family: var(--font-family, "Inter-Variable", sans-serif);
+  font-variation-settings: "wght" var(--main-font-weight, 400);
+  color: var(--accent-color, #000000);
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  color: var(--accent-color);
   background-size: cover;
   background-image: repeating-linear-gradient(
       to right,
@@ -24,17 +24,20 @@
     ),
     repeating-linear-gradient(to bottom, #d3d3d3 0 2px, transparent 2px 4px),
     linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+  background-attachment: fixed;
   display: grid;
   justify-content: center;
 }
 
 .header {
-  margin-block-start: var(--margin-block-start);
-  font-family: var(--accent-font-family);
-  background-color: var(--background-color);
-  margin-block-end: var(--margin-block-end);
+  --padding: 120px 14px;
+
+  padding: var(--padding);
+  margin-block-start: var(--margin-block-start, 100px);
+  font-family: var(--accent-font-family, "Press Start 2P", fantasy);
+  background-color: var(--background-color, #ffffff);
+  margin-block-end: var(--margin-block-end, 100px);
   display: grid;
-  min-block-size: 327px;
   inline-size: 100%;
   justify-content: center;
   align-items: center;
@@ -46,21 +49,22 @@
 }
 
 .header__cover {
-  gap: var(--gap);
+  gap: var(--gap, 20px);
   display: grid;
+}
+
+.header__logo {
+  text-align: center;
+  font-size: clamp(2.5rem, -0.7727rem + 16.3636vw, 3.0625rem);
+  text-decoration: none;
 }
 
 .header__title {
   text-align: center;
-  font-size: clamp(2.5rem, -0.7727rem + 16.3636vw, 3.0625rem);
-}
-
-.header-text {
-  text-align: center;
   font-size: clamp(0.625rem, -0.8295rem + 7.2727vw, 0.875rem);
 }
 
-.main {
+.section__main {
   display: grid;
 }
 
@@ -72,14 +76,16 @@
 }
 
 .fill-color {
-  background-color: var(--background-color);
+  background-color: var(--background-color, #ffffff);
 }
 
 .list__title {
-  padding-block-start: var(--padding-block-start);
-  padding-block-end: var(--padding-block-end);
-  padding-inline-start: var(--padding-inline-start);
-  padding-inline-end: var(--padding-inline-end);
+  font-variation-settings: "wght" var(--card-title-font-weight, 700);
+  padding-block-start: var(--padding-block-start, 3px);
+  padding-block-end: var(--padding-block-end, 5.5px);
+  padding-inline-start: var(--padding-inline-start, 10px);
+  padding-inline-end: var(--padding-inline-end, 34.5px);
+  border-block-end: #000000 2px solid;
 }
 
 .list__font {
@@ -104,41 +110,41 @@
   inline-size: 100%;
 }
 
-.filter__zero-sprint {
+.filter__saturate-opacity {
   filter: saturate(110%) opacity(90%);
 }
 
-.filter__first-sprint-blank-sheet {
+.filter__brightness {
   filter: brightness(70%);
 }
 
-.filter__first-sprint-if-doesnt-work {
+.filter__hue-rotate__opacity {
   filter: hue-rotate(0.1turn) opacity(80%);
   /* filter: hue-rotate(-2deg) saturate(4) brightness(1) contrast(1.2); */
 }
 
-.filter__second-sprint-ideal {
+.filter__contrast {
   filter: contrast(110%);
 }
 
-.filter__second-sprint-nearby {
+.filter__invert {
   filter: invert(100%);
 }
 
-.filter__third-sprint-strategies {
+.filter__grayscale {
   filter: grayscale(10%);
 }
 
-.filter__third-sprint-hands-drop {
+.filter__blur {
   filter: blur(3px);
 }
 
-.filter__fourth-sprint-now {
+.filter__saturate__hue-rotate {
   filter: saturate(150%) hue-rotate(50%);
   /* filter: drop-shadow(40px 40px 100px rgb(255, 0, 200)); */
 }
 
-.img__label {
+/* .img__label {
   text-shadow: 1px solid var(--background-color, #ffffff);
 }
 
@@ -150,7 +156,7 @@
     --font-size: clamp(0.875rem, 0.875rem + 0vw, 0.875rem);
     --line-height: 100%;
 
-    font-family: var(--accent-font-family);
+    font-family: var(--accent-font-family, "Press Start 2P", sans-serif);
     font-size: var(--font-size);
     line-height: var(--line-height);
     -webkit-text-stroke: 1px var(--background-color, #ffffff);
@@ -162,6 +168,35 @@
     opacity: 0.5;
     text-transform: lowercase;
   }
+} */
+
+.img__label {
+  --font-size: clamp(0.875rem, 0.875rem + 0vw, 0.875rem);
+  --line-height: 100%;
+
+  font-family: var(--accent-font-family, "Press Start 2P", fantasy);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  -webkit-text-stroke: 1px var(--background-color, #ffffff);
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 13px;
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
+  text-transform: lowercase;
+  text-shadow: 1px 0 var(--background-color, #ffffff);
+}
+
+@supports (
+  (text-stroke: 1px var(--background-color, #ffffff)) or
+    (-webkit-text-stroke: 1px var(--background-color, #ffffff))
+) {
+  .img__label {
+    -webkit-text-stroke: 1px var(--background-color, #ffffff);
+    text-stroke: 1px var(--background-color, #ffffff);
+    text-shadow: none;
+  }
 }
 
 .text-transform {
@@ -170,38 +205,48 @@
 
 .post__text {
   --gap: 25px;
+  --margin-block-start: -4px;
 
   gap: var(--gap);
-  padding: var(--padding);
+  padding: var(--padding, 25px);
   display: grid;
+  border-block-start: 2px solid #000000;
+  margin-block-start: var(--margin-block-start);
 }
 
 .list__text {
   --gap: 27px;
 
   gap: var(--gap);
-  line-height: var(--line-height);
+  line-height: var(--line-height, 21px);
   display: grid;
 }
 
 .icon-button__like-button {
   display: flex;
   justify-content: end;
-  /* align-items: center; */
   justify-self: end;
   inline-size: 169px;
   block-size: 38px;
-  gap: 1px;
+  align-content: center;
+  gap: 5px;
 }
 
 .card__icon-button {
   --background-color: transparent;
+  --padding: 0;
 
   background-color: var(--background-color);
-  display: flex;
-  align-self: flex-start;
-  border-color: var(--border-color);
+  border-color: var(--border-color, transparent);
   border: var(--border) currentColor;
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.like-icon {
+  transform-origin: center;
 }
 
 .card__icon-button:focus {
@@ -215,15 +260,7 @@
 }
 
 .card__like-button {
-  --background-color: transparent;
-  --line-height: 90%;
-  --font-size: clamp(0.875rem, 0.875rem + 0vw, 0.875rem);
-
-  background-color: var(--background-color);
-  font-family: var(--accent-font-family);
-  line-height: var(--line-height);
-  font-size: var(--font-size);
-  position: relative;
+  border: var(--border);
   display: flex;
   justify-self: end;
   min-inline-size: 130px;
@@ -231,110 +268,91 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border: var(--border);
 }
 
-.card__like-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0px 0px #000000;
-  transition: 0.3s ease;
+.button {
+  --background-color: transparent;
+  --font-size: clamp(0.875rem, 0.875rem + 0vw, 0.875rem);
+  --line-height: 90%;
+  --padding: 0;
+
+  background-color: var(--background-color);
+  font-family: var(--accent-font-family, "Press Start 2P", fantasy);
+  line-height: var(--line-height);
+  font-size: var(--font-size);
+  padding: var(--padding);
+  position: relative;
+  overflow: hidden;
 }
 
-.card__like-button::before {
-  --background-color: #000000;
+.button::before {
+  --background-color: #ffffff;
 
   content: "";
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--background-color);
+  background-color: var(--background-color, #ffffff);
   transition: 0.5s ease-in-out;
   z-index: 1;
   transform: translateX(-100%);
+  mix-blend-mode: difference;
 }
 
-.card__like-button:hover::before {
+.button:hover::before {
   transform: translateX(0);
   cursor: pointer;
 }
 
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0px 0px #000000;
+  transition: 0.3s ease;
+}
+
 .button__text {
   --accent-color: #ffffff;
+  --font-size: 14px;
+  --line-height: 150%;
 
   mix-blend-mode: difference;
   color: var(--accent-color);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
   z-index: 1;
 }
 
-.footer {
+.section__memory {
   --margin-block-start: 52px;
 
   margin-block-start: var(--margin-block-start);
-  margin-block-end: var(--margin-block-end);
-  margin-inline-start: var(--margin-inline-start);
-  margin-inline-end: var(--margin-inline-end);
+  margin-block-end: var(--margin-block-end, 100px);
+  margin-inline-start: var(--margin-inline-start, 34.5px);
+  margin-inline-end: var(--margin-inline-end, 34.5px);
 }
 
 .memory-button {
-  --background-color: transparent;
-  --font-size: clamp(0.875rem, 0.875rem + 0vw, 0.875rem);
-  --line-height: 90%;
-
-  position: relative;
-  background-color: var(--background-color);
-  font-family: var(--accent-font-family);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
   inline-size: 100%;
   block-size: 84px;
   display: grid;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  align-content: center;
   border: var(--border);
-}
-
-.memory-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0px 0px #000000;
-  transition: 0.3s ease;
-}
-
-.memory-button::before {
-  --background-color: #000000;
-
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-color);
-  transition: 0.5s ease-in-out;
-  z-index: 1;
-  transform: translateX(-100%);
-}
-
-.memory-button:hover::before {
-  transform: translateX(0);
-  cursor: pointer;
-}
-
-.button__text {
-  --accent-color: #ffffff;
-
-  mix-blend-mode: difference;
-  color: var(--accent-color);
-  z-index: 1;
+  row-gap: 6px;
 }
 
 .floppy {
   --accent-color: #ffffff;
 
+  color: var(--accent-color);
   inline-size: 28px;
   block-size: 28px;
   justify-self: center;
-  color: var(--accent-color);
   mix-blend-mode: difference;
   z-index: 1;
 }
@@ -343,21 +361,22 @@
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-.dialog {
+/* .dialog {
   --padding: 30px 42px;
 
   padding: var(--padding);
-  font-family: var(--accent-font-family);
+  font-family: var(--accent-font-family, "Press Start 2P", sans-serif);
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  column-gap: 15px;
+  column-gap: 19px;
   position: fixed;
   inset: 0;
   transition: opacity 0.3s ease-in-out;
   justify-content: center;
-  inline-size: 341px;
-  block-size: 191px;
+  align-items: center;
+  min-inline-size: 341px;
+  block-size: 195px;
   row-gap: 30px;
   text-transform: uppercase;
 }
@@ -369,64 +388,88 @@
 
 .floppy__dialog {
   min-width: 39px;
-  height: 39px;
-}
-
-.button__text {
-  --font-size: 14px;
-  --line-height: 150%;
-
-  font-size: var(--font-size);
-  line-height: var(--line-height);
+  max-width: 39px;
+  min-height: 39px;
+  max-height: 39px;
 }
 
 .ok-button__dialog {
-  --line-height: 90%;
-  --background-color: #ffffff;
-
-  line-height: var(--line-height);
-  background-color: var(--background-color);
   border: var(--border);
   block-size: 38px;
   grid-row: span 2;
   grid-column: span 2;
   cursor: pointer;
+  inline-size: 100%;
+} */
+
+.dialog {
+  --padding: 30px 42px;
+
+  padding: var(--padding);
+  font-family: var(--accent-font-family, "Press Start 2P", fantasy);
+  display: grid;
+  column-gap: 20px;
+  position: fixed;
+  inset: 0;
+  transition: opacity 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  min-inline-size: 341px;
+  row-gap: 30px;
+  text-transform: uppercase;
 }
 
-.ok-button__dialog:focus-visible {
-  outline: none;
-  box-shadow: 2px 2px 0px 0px #000000;
-  transition: 0.3s ease;
+.align-content {
+  display: flex;
+  gap: 20px;
 }
 
-.ok-button__dialog:hover {
-  outline: none;
-  box-shadow: 2px 2px 0px 0px #000000;
-  transition: 0.3s ease;
+.dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.floppy__dialog {
+  min-width: 39px;
+  max-width: 39px;
+  min-height: 39px;
+  max-height: 39px;
+  align-self: center;
+}
+
+.ok-button__dialog {
+  border: var(--border);
+  block-size: 38px;
+  cursor: pointer;
+  inline-size: 100%;
+  text-transform: uppercase;
+  padding: 12.5px 112.5px;
 }
 
 @media (width > 700px) {
   .header {
-    min-block-size: 368px;
+    --padding: 128px 120.5px;
+
+    padding: var(--padding);
     inline-size: max(calc(1440px - 740px), 375px);
     justify-self: center;
   }
 
-  .header__title {
+  .header__logo {
     font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   }
 
-  .header-text {
+  .header__title {
     font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   }
 
-  .main {
+  .section__main {
     max-inline-size: 696px;
     justify-self: center;
   }
 
   .post-list {
-    --gap: 52px;
+    --gap: 52.5px;
   }
 
   .list__title {
@@ -440,7 +483,8 @@
   .list__title:first-of-type {
     --padding-block-end: 3px;
 
-    padding-block-start: var(--padding-block-start);
+    padding-block-start: var(--padding-block-start, 3px);
+    display: flex;
   }
 
   .about__sprint-image {
@@ -450,7 +494,7 @@
     block-size: 100%;
   }
 
-  .filter__fourth-sprint-now {
+  .filter__drop-shadow {
     /* filter: drop-shadow(30px 30px 10px #373737); */
     filter: drop-shadow(20px 20px 5px rgb(0 0 0 / 0.6));
   }
@@ -468,7 +512,7 @@
     --line-height: 21.1px;
   }
 
-  .footer {
+  .section__memory {
     --margin-block-start: 50px;
     --margin-block-end: 103px;
     --margin-inline-start: 552px;
@@ -479,22 +523,22 @@
   }
 
   .memory-button {
-    min-inline-size: 335px;
+    min-inline-size: 339px;
     block-size: 55px;
     display: flex;
-    gap: 15px;
+    align-items: center;
+    column-gap: 8px;
   }
 
   .floppy {
     inline-size: 21px;
     block-size: 21px;
   }
-}
 
-.dialog {
-  --padding: 30px;
+  .dialog {
+    --padding: 30px;
 
-  padding: var(--padding);
-  column-gap: 20px;
-  inline-size: 353px;
+    padding: var(--padding);
+    max-inline-size: 356px;
+  }
 }

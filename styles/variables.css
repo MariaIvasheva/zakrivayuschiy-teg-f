@@ -1,9 +1,9 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 :root {
   --font-family: "Inter-Variable", sans-serif;
-  --accent-font-family: "Press Start 2P", sans-serif;
-  --card-body-weight: 400;
-  --card-title-weight: 700;
+  --accent-font-family: "Press Start 2P", fantasy;
+  --main-font-weight: 400;
+  --card-title-font-weight: 700;
   --background-color: #ffffff;
   --padding-inline-start: 10px;
   --padding-inline-end: 10px;
