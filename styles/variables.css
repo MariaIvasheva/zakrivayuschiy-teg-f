@@ -2,6 +2,7 @@
 :root {
   --font-family: "Inter-Variable", monospace, sans-serif;
   --accent-font-family: "Press Start 2P", monospace, sans-serif;
+  --accent-font-weight: 400;
   --main-font-weight: 410;
   --card-title-font-weight: 715;
   --background-color: #ffffff;

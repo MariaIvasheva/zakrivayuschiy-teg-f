@@ -20,8 +20,16 @@
   color: var(--accent-color, #000000);
   font-family: var(--font-family, "Inter-Variable", monospace, sans-serif);
   background-image:
-    repeating-linear-gradient(to right, #d3d3d3 0 2px, rgb(211 211 211 / 0) 2px 4px),
-    repeating-linear-gradient(to bottom, #d3d3d3 0 2px, rgb(211 211 211 / 0) 2px 4px),
+    repeating-linear-gradient(
+      to right,
+      #d3d3d3 0 2px,
+      rgb(211 211 211 / 0) 2px 4px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      #d3d3d3 0 2px,
+      rgb(211 211 211 / 0) 2px 4px
+    ),
     linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
   background-size: cover;
   background-attachment: fixed;
@@ -43,6 +51,7 @@
     monospace,
     sans-serif
   );
+  font-weight: var(--accent-font-weight, 400px);
   text-transform: uppercase;
   background-color: var(--background-color, #ffffff);
   inline-size: 100%;
@@ -168,6 +177,7 @@
     monospace,
     sans-serif
   );
+  font-weight: var(--accent-font-weight, 400px);
   font-size: var(--font-size, clamp(0.875rem, 0.875rem + 0vw, 0.875rem));
   line-height: var(--line-height, 100%);
   text-transform: lowercase;
@@ -268,10 +278,11 @@
     monospace,
     sans-serif
   );
+  font-weight: var(--accent-font-weight, 400px);
   font-size: var(--font-size, clamp(0.875rem, 0.875rem + 0vw, 0.875rem));
   line-height: var(--line-height, 90%);
   background-color: var(--background-color, transparent);
-  transition: 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .button::before {
@@ -363,7 +374,7 @@
 
 .dialog[open] {
   --padding: 30px 39px;
-  
+
   display: grid;
   /* transition: opacity 0.3s ease-in-out; */
   justify-content: center;
@@ -377,6 +388,7 @@
     monospace,
     sans-serif
   );
+  font-weight: var(--accent-font-weight, 400px);
   text-transform: uppercase;
   min-inline-size: 341px;
 }
