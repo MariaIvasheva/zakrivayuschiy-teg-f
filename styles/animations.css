@@ -72,8 +72,8 @@
 }
 
 .like-icon.is-liked {
-  animation: change-scale 0.3s 0.1s ease-in 1 alternate;
   transform-origin: center;
+  animation: change-scale 0.3s 0.1s ease-in 1 alternate;
   pointer-events: none;
 }
 
