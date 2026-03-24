@@ -30,7 +30,7 @@
       #d3d3d3 0 2px,
       rgb(211 211 211 / 0) 2px 4px
     ),
-    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+    linear-gradient(to bottom, #e7e7e7 0.01%, #e7e7e7 0.01%, #1a1a1a 100%);
   background-size: cover;
   background-attachment: fixed;
   font-variation-settings: "wght" var(--main-font-weight, 410);
@@ -128,7 +128,8 @@
   inline-size: 100%;
   min-block-size: 375px;
   max-block-size: 696px;
-  /* aspect-ratio: 1 / 1; */
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .filter__saturate-opacity-invert-brightness {
@@ -166,8 +167,8 @@
 .img__label {
   content: "";
   position: absolute;
-  top: 25px;
-  right: 13px;
+  inset-block-start: 25px;
+  inset-inline-end: 13px;
   opacity: 0.5;
   font-family: var(
     --accent-font-family,
@@ -230,7 +231,7 @@
   border-color: var(--border-color);
   padding: var(--padding-button, 0);
   background-color: var(--background-color-button, transparent);
-  transition: 0.3s ease;
+  transition: border 0.3s ease;
 }
 
 .card__icon-button:focus {
@@ -278,7 +279,7 @@
   width: 100%;
   height: 100%;
   background-color: var(--background-color-button-accent, #ffffff);
-  transition: 0.5s ease-in-out;
+  transition: translate 0.5s ease-in-out;
   transform: translateX(-100%);
   mix-blend-mode: difference;
 }
@@ -286,6 +287,7 @@
 .button:hover::before {
   transform: translateX(0);
   cursor: pointer;
+  /* translate: 0%; */
 }
 
 .button:focus {
@@ -294,7 +296,7 @@
 
 .button:focus-visible {
   box-shadow: 2px 2px 0px 0px #000000;
-  outline: none;
+  /* outline: none; */
 }
 
 .button__text {
@@ -303,6 +305,7 @@
   font-size: var(--font-size-button, clamp(0.875rem, 0.875rem + 0vw, 0.875rem));
   line-height: var(--line-height-button-text, 150%);
   mix-blend-mode: difference;
+  /* position: relative; */
 }
 
 .section__memory {

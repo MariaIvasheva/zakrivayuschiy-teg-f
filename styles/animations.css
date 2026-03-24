@@ -10,6 +10,26 @@
 
 */
 
+@keyframes change-scale {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes change-opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .like-icon {
   transform-origin: center;
   cursor: pointer;
@@ -58,27 +78,7 @@
 }
 
 .like-icon.is-liked .sparks {
-  animation: change-opacity 0.3s 0.3s ease-in 1 alternate;
-}
-
-@keyframes change-scale {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.25);
-  }
-}
-
-@keyframes change-opacity {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  animation: change-opacity 0.3s 0.3s ease-in;
 }
 
 .like-icon:hover .core {
